@@ -1,0 +1,9 @@
+
+image: macos
+
+environment:
+    R_URL: https://cran.r-project.org/src/base/R-3/R-3.6.1.tar.gz
+
+install:
+  - curl -O R.tar.gz $env:R_URL
+  - tar xf R.tar.gz
