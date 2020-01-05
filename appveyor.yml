@@ -7,3 +7,4 @@ environment:
 install:
   - curl -O R.tar.gz $env:R_URL
   - tar xf R.tar.gz
+  - ls
