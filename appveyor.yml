@@ -22,10 +22,10 @@ install:
   - tar xf libpng.tar.gz
   - curl -o jpeg.tar.gz https://mac.r-project.org/libs/jpeg-9-darwin.15-x86_64.tar.gz
   - tar xf jpeg.tar.gz
-  - curl -o tiff.tar.gz https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz
-  - tar xf tiff.tar.gz
-  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
-  - tar xf xz.tar.gz
+#  - curl -o tiff.tar.gz https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz
+#  - tar xf tiff.tar.gz
+#  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
+#  - tar xf xz.tar.gz
   - sudo ditto usr/local /usr/local
 
 build_script:
