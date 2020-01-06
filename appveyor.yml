@@ -26,6 +26,7 @@ build_script:
   - ls /usr/local/clang7/bin
   - export CC=/usr/local/clang7/bin/clang
   - export CXX=/usr/local/clang7/bin/clang++
+  - export CPP=/usr/local/clang7/bin/clang-cpp
   - export CFLAGS="-isysroot $HEADERS_LOCATION"
   - export CCFLAGS="-isysroot $HEADERS_LOCATION"
   - export CXXFLAGS="-isysroot $HEADERS_LOCATION"
