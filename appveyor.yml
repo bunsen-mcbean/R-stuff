@@ -41,5 +41,5 @@ build_script:
   - make install
 
 artifacts:
-  - name: logs
-    path: "**/*.log"
+  - name: R
+    path: "**/R.framework/**/*"
