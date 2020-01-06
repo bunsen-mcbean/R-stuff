@@ -47,7 +47,11 @@ build_script:
   - make
   - sudo make install
   - cd ..
-  - ditto -c -k --sequesterRsrc --keepParent /Library/Frameworks/R.framework R.framework.zip
+  - ditto /Library/Frameworks/R.framework R.framework
+  - rm -rf R.framework/Headers R.framework/Libraries R.framework/PrivateHeaders R.framework/R
+  - rm -rf R.framework/Versions/Current/Headers R.framework/Versions/Current/PrivateHeaders R.framework/Versions/Current/R
+  - rm -rf R.framework/Versions/Current/Resources/R R.framework/Versions/Current/Resources/doc R.framework/Versions/Current/Resources/man1 R.framework/Versions/Current/Resources/COPYING R.framework/Versions/Current/Resources/SVN-REVISION
+  - ditto -c -k --sequesterRsrc --keepParent R.framework R.framework.zip
 
 artifacts:
   - name: R framework
