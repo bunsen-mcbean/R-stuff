@@ -8,9 +8,9 @@ environment:
 install:
   - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
   - tar xf R.tar.gz
-  - curl -o tools.pkg $R_TOOLS_URL
+  - curl -o clang.pkg https://cran.r-project.org/bin/macosx/tools/clang-8.0.0.pkg
   - ls
-  - sudo installer -pkg ./tools.pkg -target /
+  - sudo installer -pkg clang.pkg -target /
 
 
 build_script:
