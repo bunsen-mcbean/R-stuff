@@ -15,6 +15,7 @@ install:
   - echo $PATH
 
 build_script:
-  - export PATH=$PATH:/usr/local/gfortran/bin
+  - export PATH=/usr/local/gfortran/bin:/usr/local/clang8/bin:$PATH
+  - clang --version
   - cd R-$R_VERSION
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo --with-libpng --with-jpeglib --with-libtiff
