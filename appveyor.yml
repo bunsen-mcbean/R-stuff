@@ -42,11 +42,11 @@ build_script:
   #- export SHLIB_CXXLDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
   #- export SHLIB_CXX14LDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
   - cd R-$R_VERSION
-  - ./configure --help
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
   - sudo make install
   - cd ..
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages('Rcpp', 'RInside')"
   - python patch-framework.py
 
 artifacts:
