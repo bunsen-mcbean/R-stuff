@@ -3,10 +3,14 @@ image: macos
 
 environment:
     R_VERSION: 3.6.1
+    R_TOOLS_URL: https://github.com/rmacoslib/r-macos-rtools/releases/download/v3.2.2/macos-rtools-3.2.2.pkg
 
 install:
   - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
   - tar xf R.tar.gz
+  - curl -o tools.pkg $R_TOOLS_URL
+  - sudo installer -pkg tools.pkg -target /
+
 
 build_script:
   - cd R-$R_VERSION
