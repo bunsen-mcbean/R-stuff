@@ -22,7 +22,8 @@ install:
 
 build_script:
   - export PATH=$PATH:/usr/local/gfortran/bin
-  - export CC=/usr/local/clang7/bin/clang -B/usr/local/clang7/bin
+  - export CC=/usr/local/clang7/bin/clang
+  - export CCFLAGS=-B/usr/local/clang7/bin
   - cd R-$R_VERSION
   - ./configure --help
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
