@@ -11,8 +11,11 @@ install:
   - sudo installer -pkg clang.pkg -target /
   - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
   - sudo installer -pkg gfortran.pkg -target /
+  - curl -o pcre.tar.gz https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz
+  - tar xf pcre.tar.gz
+  - ls
 
 build_script:
   - export PATH=$PATH:/usr/local/gfortran/bin
   - cd R-$R_VERSION
-  - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo --with-libpng --with-jpeglib --with-libtiff
+  #- ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo --with-libpng --with-jpeglib --with-libtiff
