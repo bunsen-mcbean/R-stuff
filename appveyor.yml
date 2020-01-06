@@ -2,9 +2,10 @@
 image: macos
 
 environment:
-    R_URL: https://cloud.r-project.org/src/base/R-3/R-3.6.1.tar.gz
+    R_VERSION: 3.6.1
 
 install:
-  - curl -o R.tar.gz $R_URL
+  - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
   - tar xf R.tar.gz
-  - ls
+  - cd R-$R_VERSION
+  - ./configure --help
