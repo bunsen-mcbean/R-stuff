@@ -44,7 +44,7 @@ build_script:
   - ./configure --help
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
-  - make install .
+  - sudo make install
 
 artifacts:
   - name: R
