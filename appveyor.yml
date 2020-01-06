@@ -35,4 +35,4 @@ build_script:
 
 artifacts:
   - name: logs
-    path: "*.log"
+    path: "**/*.log"
