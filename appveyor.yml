@@ -18,10 +18,11 @@ install:
   - curl -o libpng.tar.gz https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz
   - tar xf libpng.tar.gz
   - sudo ditto usr/local /usr/local
+  - ls /usr/local/clang7/bin
 
 build_script:
   - export PATH=$PATH:/usr/local/gfortran/bin
   - export CC=/usr/local/clang7/bin/clang
   - cd R-$R_VERSION
-  - ./configure --help
-  - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
+#  - ./configure --help
+#  - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
