@@ -23,17 +23,17 @@ install:
   - sudo ditto usr/local /usr/local
 
 build_script:
-  - ls /usr/local/clang7/bin
-  - export CC=/usr/local/clang7/bin/clang
-  - export CXX=/usr/local/clang7/bin/clang++
-  - export CPP=/usr/local/clang7/bin/clang-cpp
-  - export CFLAGS="-isysroot $HEADERS_LOCATION"
-  - export CCFLAGS="-isysroot $HEADERS_LOCATION"
-  - export CXXFLAGS="-isysroot $HEADERS_LOCATION"
-  - export CPPFLAGS="-isysroot $HEADERS_LOCATION -I/usr/local/include"
-  - export FC=/usr/local/gfortran/bin/gfortran
-  - export SHLIB_CXXLDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
-  - export SHLIB_CXX14LDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
+  #- ls /usr/local/clang7/bin
+  #- export CC=/usr/local/clang7/bin/clang
+  #- export CXX=/usr/local/clang7/bin/clang++
+  #- export CPP=/usr/local/clang7/bin/clang-cpp
+  #- export CFLAGS="-isysroot $HEADERS_LOCATION"
+  #- export CCFLAGS="-isysroot $HEADERS_LOCATION"
+  #- export CXXFLAGS="-isysroot $HEADERS_LOCATION"
+  #- export CPPFLAGS="-isysroot $HEADERS_LOCATION -I/usr/local/include"
+  #- export FC=/usr/local/gfortran/bin/gfortran
+  #- export SHLIB_CXXLDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
+  #- export SHLIB_CXX14LDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
   - cd R-$R_VERSION
   - ./configure --help
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
