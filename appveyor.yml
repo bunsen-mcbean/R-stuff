@@ -31,7 +31,7 @@ build_script:
   - export CPPFLAGS="-isysroot $HEADERS_LOCATION -I/usr/local/include"
   - cd R-$R_VERSION
   - ./configure --help
-  - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes || true
+  - "./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes || true"
 
 artifacts:
   - name: logs
