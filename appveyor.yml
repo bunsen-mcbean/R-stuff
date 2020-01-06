@@ -16,10 +16,16 @@ install:
   - tar xf pcre.tar.gz
   - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz
   - tar xf cairo.tar.gz
+  - curl -o cairomm.tar.gz https://mac.r-project.org/libs/cairomm-1.11.2-darwin.13-x86_64.tar.gz
+  - tar xf cairomm.tar.gz
   - curl -o libpng.tar.gz https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz
   - tar xf libpng.tar.gz
   - curl -o jpeg.tar.gz https://mac.r-project.org/libs/jpeg-9-darwin.15-x86_64.tar.gz
   - tar xf jpeg.tar.gz
+  - curl -o tiff.tar.gz https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz
+  - tar xf tiff.tar.gz
+  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
+  - tar xf xz.tar.gz
   - sudo ditto usr/local /usr/local
 
 build_script:
@@ -38,6 +44,7 @@ build_script:
   - ./configure --help
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
+  - make install .
 
 artifacts:
   - name: R
