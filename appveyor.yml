@@ -31,7 +31,7 @@ build_script:
   #- export CCFLAGS="-isysroot $HEADERS_LOCATION"
   #- export CXXFLAGS="-isysroot $HEADERS_LOCATION"
   #- export CPPFLAGS="-isysroot $HEADERS_LOCATION -I/usr/local/include"
-  #- export FC=/usr/local/gfortran/bin/gfortran
+  - export FC=/usr/local/gfortran/bin/gfortran
   #- export SHLIB_CXXLDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
   #- export SHLIB_CXX14LDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
   - cd R-$R_VERSION
