@@ -47,7 +47,7 @@ build_script:
   - make
   - sudo make install
   - cd ..
-  - python patch-framework.py
+  - python3 patch-framework.py
 
 artifacts:
   - name: R framework
