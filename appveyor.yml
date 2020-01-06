@@ -3,17 +3,14 @@ image: macos
 
 environment:
     R_VERSION: 3.6.1
-    R_TOOLS_URL: https://github.com/rmacoslib/r-macos-rtools/releases/download/v3.2.2/macos-rtools-3.2.2.pkg
 
 install:
   - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
   - tar xf R.tar.gz
-  - curl -o clang.pkg https://cran.r-project.org/bin/macosx/tools/clang-8.0.0.pkg
+  - curl -o clang.pkg https://cloud.r-project.org/bin/macosx/tools/clang-8.0.0.pkg
   - sudo installer -pkg clang.pkg -target /
-  - curl -o fortran.dmg https://github.com/fxcoudert/gfortran-for-macOS/releases/download/6.1/gfortran-6.1-ElCapitan.dmg
-  - sudo hdiutil attach fortran.dmg
-  - sudo installer -pkg /Volumes/gfortran-6.1-ElCapitan/gfortran-6.1-ElCapitan/gfortran.pkg -target /
-  - sudo hdiutil detach /Volumes/gfortran-6.1-ElCapitan
+  - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
+  - sudo installer -pkg gfortran.pkg -target /
 
 build_script:
   - cd R-$R_VERSION
