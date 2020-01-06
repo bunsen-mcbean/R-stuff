@@ -11,10 +11,8 @@ install:
   - sudo installer -pkg clang.pkg -target /
   - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
   - sudo installer -pkg gfortran.pkg -target /
-  - ls /Library/Developer/CommandLineTools/Packages/
 
 build_script:
-  - export PATH=/usr/local/gfortran/bin:/usr/local/clang8/bin:$PATH
-  - clang --version
+  - export PATH=/usr/local/gfortran/bin:$PATH
   - cd R-$R_VERSION
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo --with-libpng --with-jpeglib --with-libtiff
