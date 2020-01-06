@@ -45,6 +45,7 @@ build_script:
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
   - sudo make install
+  - cd ..
   - ditto -c -k --sequesterRsrc --keepParent /Library/Frameworks/R.framework R.framework.zip
 
 artifacts:
