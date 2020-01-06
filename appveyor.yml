@@ -18,17 +18,18 @@ install:
   - tar xf cairo.tar.gz
   - curl -o libpng.tar.gz https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz
   - tar xf libpng.tar.gz
+  - curl -o jpeg.tar.gz https://mac.r-project.org/libs/jpeg-9-darwin.15-x86_64.tar.gz
+  - tar xf jpeg.tar.gz
   - sudo ditto usr/local /usr/local
-  - ls /usr/local/clang7/bin
 
 build_script:
-  - export PATH=$PATH:/usr/local/gfortran/bin
   - export CC=/usr/local/clang7/bin/clang
   - export CXX=/usr/local/clang7/bin/clang++
   - export CFLAGS="-isysroot $HEADERS_LOCATION"
   - export CCFLAGS="-isysroot $HEADERS_LOCATION"
   - export CXXFLAGS="-isysroot $HEADERS_LOCATION"
   - export CPPFLAGS="-isysroot $HEADERS_LOCATION -I/usr/local/include"
+  - export FC=/usr/local/gfortran/bin/gfortran
   - cd R-$R_VERSION
   - ./configure --help
   - "./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes || true"
