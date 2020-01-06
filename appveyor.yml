@@ -12,7 +12,8 @@ install:
   - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
   - sudo installer -pkg gfortran.pkg -target /
   - curl -o pcre.tar.gz https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz
-  - sudo tar xf pcre.tar.gz -C /
+  - tar xf pcre.tar.gz
+  - sudo ditto usr/local /usr/local
 
 build_script:
   - export PATH=$PATH:/usr/local/gfortran/bin
