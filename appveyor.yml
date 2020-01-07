@@ -29,7 +29,9 @@ install:
 #  - tar xf xz.tar.gz
   - sudo ditto usr/local /usr/local
   - pkg-config --version
+  - /usr/local/bin/pkg-config --version
   - pkg-config --list-all
+  - pkg-config --libs cairo-png
   - /usr/local/bin/pkg-config --exists cairo-png
 
 build_script:
