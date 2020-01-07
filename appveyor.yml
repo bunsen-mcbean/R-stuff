@@ -5,7 +5,6 @@ environment:
     R_VERSION: 3.6.1
     HEADERS_LOCATION: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk
     MACOSX_DEPLOYMENT_TARGET: 10.11
-    PKG_CONFIG_PATH: /usr/local/lib/pkgconfig
 
 install:
   - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
@@ -29,6 +28,7 @@ install:
 #  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
 #  - tar xf xz.tar.gz
   - sudo ditto usr/local /usr/local
+  - pkg-config --exists cairo-png
 
 build_script:
   #- ls /usr/local/clang7/bin
