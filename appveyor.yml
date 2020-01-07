@@ -47,8 +47,9 @@ build_script:
   - sudo make install
   - cd ..
   - ditto /Library/Frameworks/R.framework R.framework
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='https://cloud.r-project.org', lib='R.framework/Resources/library')"
   - mkdir R.framework/Resources/site-library
-  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside', 'rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='https://cloud.r-project.org', lib='R.framework/Resources/site-library')"
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='https://cloud.r-project.org', lib='R.framework/Resources/site-library')"
   - python patch-framework.py
 
 artifacts:
