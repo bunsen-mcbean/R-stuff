@@ -35,7 +35,7 @@ install:
 #  - tar xf xz.tar.gz
   - sudo ditto usr/local /usr/local
   - curl -o XQuartz.dmg https://dl.bintray.com/xquartz/downloads/XQuartz-2.7.11.dmg
-  - sudo hdiutil attach XQuartz.dmg
+  - sudo hdiutil mount XQuartz.dmg
   - sudo installer -package /Volumes/XQuartz-2.7.11/XQuartz.pkg -target /
   - sudo hdiutil detach /Volumes/XQuartz-2.7.11
 
