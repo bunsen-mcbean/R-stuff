@@ -29,11 +29,11 @@ install:
 #  - tar xf tiff.tar.gz
 #  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
 #  - tar xf xz.tar.gz
-  - mkdir -p /opt/local
+  - sudo mkdir -p /opt/local
   - sudo ditto usr/local /opt/local
   - pkg-config --version
   - pkg-config --list-all
-  - pkg-config --exists cairo-png
+  - /usr/local/bin/pkg-config --exists cairo-png
 
 build_script:
   #- ls /usr/local/clang7/bin
