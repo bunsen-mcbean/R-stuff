@@ -93,9 +93,6 @@ def change_dep_paths(lib, changes):
 
 wd = os.getcwd()
 
-shutil.rmtree(os.path.join(wd, "R.framework"), ignore_errors=True)
-shutil.copytree("/Library/Frameworks/R.framework/", os.path.join(wd, "R.framework"), symlinks=True)
-
 path = os.path.join(wd, "R.framework")
 out_lib_dir = os.path.join(wd, "R.framework/Versions/3.6/Resources/lib")
 
