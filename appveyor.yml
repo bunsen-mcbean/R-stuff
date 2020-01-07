@@ -46,7 +46,9 @@ build_script:
   - make
   - sudo make install
   - cd ..
-  - sudo /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages('Rcpp', 'RInside')"
+  - ditto /Library/Frameworks/R.framework R.framework
+  - mkdir R.framework/Resources/site-library
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages('Rcpp', 'RInside', library='R.framework/Resources/site-library')"
   - python patch-framework.py
 
 artifacts:
