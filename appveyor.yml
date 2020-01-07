@@ -5,6 +5,7 @@ environment:
     R_VERSION: 3.6.1
     HEADERS_LOCATION: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk
     MACOSX_DEPLOYMENT_TARGET: 10.11
+    PKG_CONFIG_DEBUG_SPEW: 1
 
 install:
   - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
@@ -32,7 +33,7 @@ install:
   - /usr/local/bin/pkg-config --version
   - pkg-config --list-all
   - pkg-config --libs cairo-png
-  - /usr/local/bin/pkg-config --exists cairo-png
+  - /usr/local/bin/pkg-config --exists cairo-png --print-errors
 
 build_script:
   #- ls /usr/local/clang7/bin
