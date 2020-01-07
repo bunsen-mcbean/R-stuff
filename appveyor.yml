@@ -7,6 +7,8 @@ environment:
     MACOSX_DEPLOYMENT_TARGET: 10.11
 
 install:
+  - curl -o pkgconfig.tar.gz https://mac.r-project.org/libs/pkgconfig-0.28-darwin.15-x86_64.tar.gz
+  - tar xf pkgconfig.tar.gz
   - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
   - tar xf R.tar.gz
   - curl -o clang.pkg https://cloud.r-project.org/bin/macosx/tools/clang-7.0.0.pkg
@@ -14,21 +16,20 @@ install:
   - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
   - sudo installer -pkg gfortran.pkg -target /
   - curl -o pcre.tar.gz https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz
-  - sudo tar fvxzm pcre.tar.gz -C /
-  - curl -o pkgconfig.tar.gz https://mac.r-project.org/libs/pkgconfig-0.28-darwin.15-x86_64.tar.gz
-  - sudo tar fvxz pkgconfig.tar.gz -C /
+  - tar xf pcre.tar.gz
   - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz
-  - sudo tar fvxz cairo.tar.gz -C /
+  - tar xf cairo.tar.gz
 #  - curl -o cairomm.tar.gz https://mac.r-project.org/libs/cairomm-1.11.2-darwin.13-x86_64.tar.gz
 #  - tar xf cairomm.tar.gz
   - curl -o libpng.tar.gz https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz
-  - sudo tar fvxz libpng.tar.gz -C /
+  - tar xf libpng.tar.gz
   - curl -o jpeg.tar.gz https://mac.r-project.org/libs/jpeg-9-darwin.15-x86_64.tar.gz
-  - sudo tar fvxz jpeg.tar.gz -C /
+  - tar xf jpeg.tar.gz
 #  - curl -o tiff.tar.gz https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz
 #  - tar xf tiff.tar.gz
 #  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
 #  - tar xf xz.tar.gz
+  - sudo ditto usr/local /usr/local
   - pkg-config --version
   - pkg-config --list-all
   - pkg-config --exists cairo-png
