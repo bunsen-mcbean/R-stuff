@@ -3,7 +3,7 @@ image: macos
 
 environment:
     R_VERSION: 3.6.1
-    HEADERS_LOCATION: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk
+#    HEADERS_LOCATION: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk
     MACOSX_DEPLOYMENT_TARGET: 10.11
 
 install:
@@ -23,21 +23,19 @@ install:
   - tar xf freetype.tar.gz
   - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz
   - tar xf cairo.tar.gz
-#  - curl -o cairomm.tar.gz https://mac.r-project.org/libs/cairomm-1.11.2-darwin.13-x86_64.tar.gz
-#  - tar xf cairomm.tar.gz
   - curl -o libpng.tar.gz https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz
   - tar xf libpng.tar.gz
   - curl -o jpeg.tar.gz https://mac.r-project.org/libs/jpeg-9-darwin.15-x86_64.tar.gz
   - tar xf jpeg.tar.gz
-#  - curl -o tiff.tar.gz https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz
-#  - tar xf tiff.tar.gz
+  - curl -o tiff.tar.gz https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz
+  - tar xf tiff.tar.gz
 #  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
 #  - tar xf xz.tar.gz
   - curl -o readline.tar.gz https://mac.r-project.org/libs/readline-5.2-12-darwin8-bin4.tar.gz
   - tar xf readline.tar.gz
   - sudo ditto usr/local /usr/local
-  - curl -o XQuartz.pkg https://www.jamovi.org/misc/XQuartz.pkg
-  - sudo installer -package XQuartz.pkg -target /
+#  - curl -o XQuartz.pkg https://www.jamovi.org/misc/XQuartz.pkg
+#  - sudo installer -package XQuartz.pkg -target /
 
 build_script:
   #- ls /usr/local/clang7/bin
@@ -60,10 +58,11 @@ build_script:
   - cd ..
   - ditto /Library/Frameworks/R.framework R.framework
   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='https://cloud.r-project.org', lib='R.framework/Resources/library', type='mac.binary.el-capitan')"
-  - mkdir -p base
-  - mkdir -p base/R
-  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='https://cloud.r-project.org', lib='base/R', type='mac.binary.el-capitan')"
+  - mkdir -p R.framework/Resources/base
+  - mkdir -p R.framework/Resources/base/R
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='https://cloud.r-project.org', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
   - python patch-framework.py
+  - mv R.framework/Resources/base .
   - tar -cjf base.tar.bz2 base
 
 artifacts:
