@@ -14,7 +14,7 @@ install:
   - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
   - sudo installer -pkg gfortran.pkg -target /
   - curl -o pcre.tar.gz https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz
-  - sudo tar -m fvxz pcre.tar.gz -C /
+  - sudo tar fvxzm pcre.tar.gz -C /
   - curl -o pkgconfig.tar.gz https://mac.r-project.org/libs/pkgconfig-0.28-darwin.15-x86_64.tar.gz
   - sudo tar fvxz pkgconfig.tar.gz -C /
   - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz
