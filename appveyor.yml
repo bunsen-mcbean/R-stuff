@@ -30,6 +30,7 @@ install:
   - sudo ditto usr/local /usr/local
   - pkg-config --version
   - ls /usr/local/lib/pkgconfig
+  - pkg-config --list-all
   - pkg-config --exists cairo-png
 
 build_script:
