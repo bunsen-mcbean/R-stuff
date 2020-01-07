@@ -28,6 +28,8 @@ install:
 #  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
 #  - tar xf xz.tar.gz
   - sudo ditto usr/local /usr/local
+  - pkg-config --version
+  - ls /usr/local/lib/pkgconfig
   - pkg-config --exists cairo-png
 
 build_script:
