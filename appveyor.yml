@@ -34,10 +34,8 @@ install:
 #  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
 #  - tar xf xz.tar.gz
   - sudo ditto usr/local /usr/local
-  - curl -o XQuartz.dmg https://dl.bintray.com/xquartz/downloads/XQuartz-2.7.11.dmg
-  - sudo hdiutil mount XQuartz.dmg
-  - sudo installer -package /Volumes/XQuartz-2.7.11/XQuartz.pkg -target /
-  - sudo hdiutil detach /Volumes/XQuartz-2.7.11
+  - curl -o https://www.jamovi.org/misc/XQuartz.pkg
+  - sudo installer -package XQuartz.pkg -target /
 
 build_script:
   #- ls /usr/local/clang7/bin
