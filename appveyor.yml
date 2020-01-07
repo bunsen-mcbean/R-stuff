@@ -17,8 +17,6 @@ install:
   - tar xf pcre.tar.gz
   - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.12.16-darwin10-bin2.tar.gz
   - tar xf cairo.tar.gz
-  - curl -o cairo.patch https://mac.r-project.org/libs/cairo-1.12.16-darwin10-static-pkgconfig.patch
-  - patch -ruN -d usr/local/lib < cairo.patch
 #  - curl -o cairomm.tar.gz https://mac.r-project.org/libs/cairomm-1.11.2-darwin.13-x86_64.tar.gz
 #  - tar xf cairomm.tar.gz
   - curl -o libpng.tar.gz https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz
