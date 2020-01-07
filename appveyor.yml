@@ -27,6 +27,8 @@ install:
 #  - tar xf tiff.tar.gz
 #  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
 #  - tar xf xz.tar.gz
+  - curl -o pkgconfig.tar.gz https://mac.r-project.org/libs/pkgconfig-0.28-darwin.15-x86_64.tar.gz
+  - tar xf pkgconfig.tar.gz
   - sudo ditto usr/local /usr/local
   - pkg-config --version
   - ls /usr/local/lib/pkgconfig
