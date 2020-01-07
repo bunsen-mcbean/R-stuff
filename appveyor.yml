@@ -15,10 +15,12 @@ install:
   - sudo installer -pkg gfortran.pkg -target /
   - curl -o pcre.tar.gz https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz
   - tar xf pcre.tar.gz
-  - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz
+  - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.12.16-darwin10-bin2.tar.gz
   - tar xf cairo.tar.gz
-  - curl -o cairomm.tar.gz https://mac.r-project.org/libs/cairomm-1.11.2-darwin.13-x86_64.tar.gz
-  - tar xf cairomm.tar.gz
+  - curl -o cairo-patch.tar.gz https://mac.r-project.org/libs/cairo-1.12.16-darwin10-static-pkgconfig.patch
+  - tar xf cairo-patch.tar.gz
+#  - curl -o cairomm.tar.gz https://mac.r-project.org/libs/cairomm-1.11.2-darwin.13-x86_64.tar.gz
+#  - tar xf cairomm.tar.gz
   - curl -o libpng.tar.gz https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz
   - tar xf libpng.tar.gz
   - curl -o jpeg.tar.gz https://mac.r-project.org/libs/jpeg-9-darwin.15-x86_64.tar.gz
