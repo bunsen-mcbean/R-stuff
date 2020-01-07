@@ -15,6 +15,8 @@ install:
   - sudo installer -pkg gfortran.pkg -target /
   - curl -o pcre.tar.gz https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz
   - tar xf pcre.tar.gz
+  - curl -o pixman.tar.gz https://mac.r-project.org/libs/pixman-0.32.6-darwin.13-x86_64.tar.gz
+  - tar xf pixman.tar.gz
   - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz
   - tar xf cairo.tar.gz
 #  - curl -o cairomm.tar.gz https://mac.r-project.org/libs/cairomm-1.11.2-darwin.13-x86_64.tar.gz
