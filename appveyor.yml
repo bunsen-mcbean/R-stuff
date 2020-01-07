@@ -19,6 +19,8 @@ install:
   - tar xf pixman.tar.gz
   - curl -o fontconfig.tar.gz https://mac.r-project.org/libs/fontconfig-2.11.1-darwin.13-x86_64.tar.gz
   - tar xf fontconfig.tar.gz
+  - curl -o freetype.tar.gz https://mac.r-project.org/libs/freetype-2.5.5-darwin.13-x86_64.tar.gz
+  - tar xf freetype.tar.gz
   - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz
   - tar xf cairo.tar.gz
 #  - curl -o cairomm.tar.gz https://mac.r-project.org/libs/cairomm-1.11.2-darwin.13-x86_64.tar.gz
@@ -53,10 +55,14 @@ build_script:
   - cd ..
   - ditto /Library/Frameworks/R.framework R.framework
   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='https://cloud.r-project.org', lib='R.framework/Resources/library', type='mac.binary.el-capitan')"
-  - mkdir R.framework/Resources/site-library
-  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='https://cloud.r-project.org', lib='R.framework/Resources/site-library', type='mac.binary.el-capitan')"
+  - mkdir -p base
+  - mkdir -p base/R
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='https://cloud.r-project.org', lib='base/R', type='mac.binary.el-capitan')"
   - python patch-framework.py
+  - tar -cjf base.tar.bz2 base
 
 artifacts:
   - name: R framework
     path: R.framework.tar.bz2
+  - name: Base module
+    path: base.tar.bz2
