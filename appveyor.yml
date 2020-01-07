@@ -52,6 +52,8 @@ build_script:
   #- export SHLIB_CXXLDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
   #- export SHLIB_CXX14LDFLAGS="-Wl,-rpath,\${R_HOME}/lib \${R_HOME}/lib/libc++abi.1.dylib"
   - cd R-$R_VERSION
+  - cat configure | grep -v "#include <cairo-xlib.h>" >configure
+  - cat configure
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
   - sudo make install
