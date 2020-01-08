@@ -38,8 +38,9 @@ install:
 build_script:
   - export FC=/usr/local/gfortran/bin/gfortran
   - cd R-$R_VERSION
-  - cat configure | grep -v "#include <cairo-xlib.h>" >configure2
-  - cat configure2 >configure
+  - cat configure | grep -v "#include <cairo-xlib.h>" >tmp
+  - cat tmp >configure
+  - rm tmp
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
   - sudo make install
@@ -51,6 +52,17 @@ build_script:
   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
   - python patch-framework.py
   - mv R.framework/Resources/base .
+  
+  - echo HERE=$(cd "$(dirname "$0")"; pwd)       >tmp
+  - echo export R_HOME=$HERE/..                  >>tmp
+  - echo export R_SHARE_DIR=$R_HOME/share        >>tmp
+  - echo export R_INCLUDE_DIR=$R_HOME/include    >>tmp
+  - echo export R_DOC_DIR=$R_HOME/doc            >>tmp
+  - tail -n +41 Versions/Current/Resources/bin/R >>tmp
+  - cat tmp >Versions/Current/Resources/bin/R
+  - rm tmp
+  - cat Versions/Current/Resources/bin/R
+  
   - tar -cjf R.framework.tar.bz2  R.framework
   - tar -cjf base.tar.bz2         base
 
