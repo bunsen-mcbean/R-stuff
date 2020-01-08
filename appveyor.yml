@@ -57,11 +57,11 @@ build_script:
   
   - echo "#!/bin/sh"                             >tmp
   - echo "# Shell wrapper for R executable."     >>tmp
-  - echo HERE=$(cd "$(dirname "$0")"; pwd)       >>tmp
-  - echo export R_HOME=$HERE/..                  >>tmp
-  - echo export R_SHARE_DIR=$R_HOME/share        >>tmp
-  - echo export R_INCLUDE_DIR=$R_HOME/include    >>tmp
-  - echo export R_DOC_DIR=$R_HOME/doc            >>tmp
+  - echo HERE=\$(cd "$(dirname "\$0")"; pwd)       >>tmp
+  - echo export R_HOME=\$HERE/..                  >>tmp
+  - echo export R_SHARE_DIR=\$R_HOME/share        >>tmp
+  - echo export R_INCLUDE_DIR=\$R_HOME/include    >>tmp
+  - echo export R_DOC_DIR=\$R_HOME/doc            >>tmp
   - tail -n +41 R.framework/Versions/Current/Resources/bin/R >>tmp
   - cat tmp >R.framework/Versions/Current/Resources/bin/R
   - rm tmp
