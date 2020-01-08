@@ -58,10 +58,10 @@ build_script:
   - echo export R_SHARE_DIR=$R_HOME/share        >>tmp
   - echo export R_INCLUDE_DIR=$R_HOME/include    >>tmp
   - echo export R_DOC_DIR=$R_HOME/doc            >>tmp
-  - tail -n +41 Versions/Current/Resources/bin/R >>tmp
-  - cat tmp >Versions/Current/Resources/bin/R
+  - tail -n +41 R.framework/Versions/Current/Resources/bin/R >>tmp
+  - cat tmp >R.framework/Versions/Current/Resources/bin/R
   - rm tmp
-  - cat Versions/Current/Resources/bin/R
+  - cat R.framework/Versions/Current/Resources/bin/R
   
   - tar -cjf R.framework.tar.bz2  R.framework
   - tar -cjf base.tar.bz2         base
