@@ -184,5 +184,3 @@ call(['install_name_tool', '-id', '@executable_path/../Frameworks/R.framework/Ve
 
 call(['ln', '-s', 'Versions/3.6/Resources', 'R.framework/Resources'])
 
-call(['rm', '-f', 'R.framework.tar.bz2'])
-call(['tar', '-cjf',  'R.framework.tar.bz2', 'R.framework'])
