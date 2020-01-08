@@ -29,13 +29,11 @@ install:
   - tar xf jpeg.tar.gz
   - curl -o tiff.tar.gz https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz
   - tar xf tiff.tar.gz
-#  - curl -o xz.tar.gz https://mac.r-project.org/libs/xz-5.2.3-darwin.15-x86_64.tar.gz
-#  - tar xf xz.tar.gz
   - curl -o readline.tar.gz https://mac.r-project.org/libs/readline-5.2-12-darwin8-bin4.tar.gz
   - tar xf readline.tar.gz
   - sudo ditto usr/local /usr/local
-#  - curl -o XQuartz.pkg https://www.jamovi.org/misc/XQuartz.pkg
-#  - sudo installer -package XQuartz.pkg -target /
+  - curl -o XQuartz.pkg https://www.jamovi.org/misc/XQuartz.pkg
+  - sudo installer -package XQuartz.pkg -target /
 
 build_script:
   #- ls /usr/local/clang7/bin
