@@ -8,8 +8,13 @@ import shutil
 def locate_libs(path):
 
 	locations = set()
+	
+	if path.endswith(".dSYM"):
+		
+		shutil.rmtree(path)
+		print("removing : " + path)
 
-	if os.path.isfile(path):
+	elif os.path.isfile(path):
 	
 		if path.endswith(".so") or path.endswith(".dylib"):
 	
@@ -35,13 +40,8 @@ def locate_libs(path):
 						locations.update(locate_libs(file))
 		
 	elif os.path.isdir(path):
-	
-
-		if path.endswith(".dSYM"):
-			shutil.rmtree(path)
-			print("removing : " + path)
 			
-		elif path.endswith("/html") or path.endswith("/help") or path.endswith("/demo") or path.endswith("/tests"):
+		if path.endswith("/html") or path.endswith("/help") or path.endswith("/demo") or path.endswith("/tests"):
 			shutil.rmtree(path)
 			print("removing : " + path)
 
