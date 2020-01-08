@@ -8,30 +8,20 @@ environment:
     FC: /usr/local/gfortran/bin/gfortran
 
 install:
-  - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
-  - tar xf R.tar.gz
   - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
   - sudo installer -pkg gfortran.pkg -target /
   - curl -o XQuartz.pkg https://www.jamovi.org/misc/XQuartz.pkg
   - sudo installer -package XQuartz.pkg -target /
-  - curl -o pcre.tar.gz https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz
-  - tar xf pcre.tar.gz
-  - curl -o pixman.tar.gz https://mac.r-project.org/libs/pixman-0.32.6-darwin.13-x86_64.tar.gz
-  - tar xf pixman.tar.gz
-  - curl -o fontconfig.tar.gz https://mac.r-project.org/libs/fontconfig-2.11.1-darwin.13-x86_64.tar.gz
-  - tar xf fontconfig.tar.gz
-  - curl -o freetype.tar.gz https://mac.r-project.org/libs/freetype-2.5.5-darwin.13-x86_64.tar.gz
-  - tar xf freetype.tar.gz
-  - curl -o cairo.tar.gz https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz
-  - tar xf cairo.tar.gz
-  - curl -o libpng.tar.gz https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz
-  - tar xf libpng.tar.gz
-  - curl -o jpeg.tar.gz https://mac.r-project.org/libs/jpeg-9-darwin.15-x86_64.tar.gz
-  - tar xf jpeg.tar.gz
-  - curl -o tiff.tar.gz https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz
-  - tar xf tiff.tar.gz
-  - curl -o readline.tar.gz https://mac.r-project.org/libs/readline-5.2-12-darwin8-bin4.tar.gz
-  - tar xf readline.tar.gz
+  - curl https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/pixman-0.32.6-darwin.13-x86_64.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/fontconfig-2.11.1-darwin.13-x86_64.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/freetype-2.5.5-darwin.13-x86_64.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/cairo-1.14.2-darwin.13-x86_64.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/libpng-1.6.28-darwin.15-x86_64.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/jpeg-9-darwin.15-x86_64.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz | tar xz
+  - curl https://mac.r-project.org/libs/readline-5.2-12-darwin8-bin4.tar.gz | tar xz
   - sudo ditto usr/local /usr/local
 
 build_script:
@@ -65,7 +55,6 @@ build_script:
   - tail -n +41 R.framework/Versions/Current/Resources/bin/R >>tmp
   - cat tmp >R.framework/Versions/Current/Resources/bin/R
   - rm tmp
-  - cat R.framework/Versions/Current/Resources/bin/R
   
   - tar -cjf R.framework.tar.bz2  R.framework
   - tar -cjf base.tar.bz2         base
