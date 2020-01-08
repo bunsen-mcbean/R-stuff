@@ -5,14 +5,15 @@ environment:
     R_VERSION: 3.6.1
     MACOSX_DEPLOYMENT_TARGET: 10.11
     CRAN_MIRROR: https://cran.microsoft.com/snapshot/2020-01-01
+    FC: /usr/local/gfortran/bin/gfortran
 
 install:
   - curl -o R.tar.gz https://cloud.r-project.org/src/base/R-3/R-$R_VERSION.tar.gz
   - tar xf R.tar.gz
- # - curl -o clang.pkg https://cloud.r-project.org/bin/macosx/tools/clang-7.0.0.pkg
- # - sudo installer -pkg clang.pkg -target /
   - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
   - sudo installer -pkg gfortran.pkg -target /
+  - curl -o XQuartz.pkg https://www.jamovi.org/misc/XQuartz.pkg
+  - sudo installer -package XQuartz.pkg -target /
   - curl -o pcre.tar.gz https://mac.r-project.org/libs/pcre-8.40-darwin.15-x86_64.tar.gz
   - tar xf pcre.tar.gz
   - curl -o pixman.tar.gz https://mac.r-project.org/libs/pixman-0.32.6-darwin.13-x86_64.tar.gz
@@ -32,19 +33,20 @@ install:
   - curl -o readline.tar.gz https://mac.r-project.org/libs/readline-5.2-12-darwin8-bin4.tar.gz
   - tar xf readline.tar.gz
   - sudo ditto usr/local /usr/local
-  - curl -o XQuartz.pkg https://www.jamovi.org/misc/XQuartz.pkg
-  - sudo installer -package XQuartz.pkg -target /
 
 build_script:
-  - export FC=/usr/local/gfortran/bin/gfortran
+
   - cd R-$R_VERSION
+  
   - cat configure | grep -v "#include <cairo-xlib.h>" >tmp
   - cat tmp >configure
   - rm tmp
+  
   - ./configure --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
   - sudo make install
   - cd ..
+  
   - ditto /Library/Frameworks/R.framework R.framework
   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/library', type='mac.binary.el-capitan')"
   - mkdir -p R.framework/Resources/base
@@ -53,7 +55,9 @@ build_script:
   - python patch-framework.py
   - mv R.framework/Resources/base .
   
-  - echo HERE=$(cd "$(dirname "$0")"; pwd)       >tmp
+  - echo "#!/bin/sh"                             >tmp
+  - echo "# Shell wrapper for R executable."     >>tmp
+  - echo HERE=$(cd "$(dirname "$0")"; pwd)       >>tmp
   - echo export R_HOME=$HERE/..                  >>tmp
   - echo export R_SHARE_DIR=$R_HOME/share        >>tmp
   - echo export R_INCLUDE_DIR=$R_HOME/include    >>tmp
