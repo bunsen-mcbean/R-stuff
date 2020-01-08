@@ -57,7 +57,7 @@ build_script:
   
   - echo "#!/bin/sh"                              >tmp
   - echo "# Shell wrapper for R executable."      >>tmp
-  - echo HERE=\$\(cd "\$\(dirname "\$0"\)"; pwd\)   >>tmp
+  - echo HERE=\$\(cd "\$\(dirname "\$0"\)"\; pwd\)   >>tmp
   - echo export R_HOME=\$HERE/..                  >>tmp
   - echo export R_SHARE_DIR=\$R_HOME/share        >>tmp
   - echo export R_INCLUDE_DIR=\$R_HOME/include    >>tmp
