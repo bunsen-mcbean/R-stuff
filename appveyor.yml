@@ -71,4 +71,4 @@ artifacts:
   - name: Base module
     path: base.tar.bz2
   - name: Logs
-    path: *.log
+    path: "*.log"
