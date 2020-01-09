@@ -27,7 +27,7 @@ install:
 
 build_script:
 
-  - export PATH=/usr/local/clang7/bin:/usr/local/gfortran/bin/gfortran:$PATH
+  - export PATH=/usr/local/clang7/bin:/usr/local/gfortran/bin:$PATH
 
   - cd R-$R_VERSION
   
