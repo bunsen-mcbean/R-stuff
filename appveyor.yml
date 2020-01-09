@@ -28,21 +28,19 @@ install:
 
 build_script:
 
-  - export PATH="/usr/local/clang7/bin:$PATH"
-  - export LDFLAGS="-L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath -lm"
-
   - cd R-$R_VERSION
   
   - cat configure | grep -v "#include <cairo-xlib.h>" >tmp
   - cat tmp >configure
   - rm tmp
+
+  - ./configure  'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include' 'CXXFLAGS=-Wall -g -O2' 'OBJCFLAGS=-Wall -g -O2' 'FCFLAGS=-Wall -g -O2' 'F77FLAGS=-Wall -g -O2' '--enable-memory-profiling' '--x-libraries=/opt/X11/lib' '--enable-R-framework' 'PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/lib/pkgconfig'
+#  - ./configure 'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include' 'CXXFLAGS=-Wall -g -O2' 'OBJCFLAGS=-Wall -g -O2' 'FCFLAGS=-Wall -g -O2' 'F77FLAGS=-Wall -g -O2' '--x-libraries=/opt/X11/lib' '--enable-R-framework' 'PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/lib/pkgconfig' --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes || true
+  - make
+  - sudo make install
+  - cd ..
   
-  - ./configure 'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include' 'CXXFLAGS=-Wall -g -O2' 'OBJCFLAGS=-Wall -g -O2' 'FCFLAGS=-Wall -g -O2' 'F77FLAGS=-Wall -g -O2' '--x-libraries=/opt/X11/lib' '--enable-R-framework' 'PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/lib/pkgconfig' --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes || true
-#   - make
-#   - sudo make install
-#   - cd ..
-  
-#   - ditto /Library/Frameworks/R.framework R.framework
+  - ditto /Library/Frameworks/R.framework R.framework
 #   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/library', type='source')"
 #   - mkdir -p R.framework/Resources/base
 #   - mkdir -p R.framework/Resources/base/R
@@ -61,8 +59,8 @@ build_script:
 #   - cat tmp >R.framework/Versions/Current/Resources/bin/R
 #   - rm tmp
   
-#   - tar -cjf R.framework.tar.bz2  R.framework
-#   - tar -cjf base.tar.bz2         base
+  - tar -cjf R.framework.tar.bz2  R.framework
+  - tar -cjf base.tar.bz2         base
 
 artifacts:
   - name: R framework
