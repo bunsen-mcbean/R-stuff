@@ -5,7 +5,6 @@ environment:
     R_VERSION: 3.6.1
     MACOSX_DEPLOYMENT_TARGET: 10.11
     CRAN_MIRROR: https://cran.microsoft.com/snapshot/2020-01-01
-    PATH: "/usr/local/clang7/bin:/usr/local/gfortran/bin/gfortran:$PATH"
 
 install:
   - curl -o clang.pkg https://cloud.r-project.org/bin/macosx/tools/clang-7.0.0.pkg
@@ -27,6 +26,8 @@ install:
   - sudo ditto usr/local /usr/local
 
 build_script:
+
+  - export PATH=/usr/local/clang7/bin:/usr/local/gfortran/bin/gfortran:$PATH
 
   - cd R-$R_VERSION
   
