@@ -60,7 +60,7 @@ build_script:
 #   - rm tmp
   
   - tar -cjf R.framework.tar.bz2  R.framework
-  - tar -cjf base.tar.bz2         base
+#  - tar -cjf base.tar.bz2         base
 
 artifacts:
   - name: R framework
