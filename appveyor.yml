@@ -29,7 +29,7 @@ install:
 build_script:
 
   - export PATH="/usr/local/clang7/bin:$PATH"
-  - export LDFLAGS="-L/usr/local/gfortran/lib -lgfortran"
+  - export LDFLAGS="-L/usr/local/gfortran/lib -lgfortran -lquadmath -lm"
 
   - cd R-$R_VERSION
   
