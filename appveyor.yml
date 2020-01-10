@@ -26,12 +26,12 @@ install:
   - curl https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz | tar xz
   - curl https://mac.r-project.org/libs/readline-5.2-12-darwin8-bin4.tar.gz | tar xz
   - sudo ditto usr/local /usr/local
-  - sudo rm -rf /Library/Frameworks/R.framework
-  - curl -o R.pkg https://cloud.r-project.org/bin/macosx/R-3.6.1.pkg
-  - sudo installer -pkg R.pkg -target /
-  - cp /Library/Frameworks/R.framework/Resources/lib/libc++.1.dylib .
-  - cp /Library/Frameworks/R.framework/Resources/lib/libc++abi.dylib .
-  - sudo rm -rf /Library/Frameworks/R.framework
+#   - sudo rm -rf /Library/Frameworks/R.framework
+#   - curl -o R.pkg https://cloud.r-project.org/bin/macosx/R-3.6.1.pkg
+#   - sudo installer -pkg R.pkg -target /
+#   - cp /Library/Frameworks/R.framework/Resources/lib/libc++.1.dylib .
+#   - cp /Library/Frameworks/R.framework/Resources/lib/libc++abi.dylib .
+#   - sudo rm -rf /Library/Frameworks/R.framework
 #  - curl -o fixpathR https://svn.r-project.org/R-dev-web/trunk/QA/Simon/R-build/fixpathR
 
 build_script:
@@ -48,8 +48,8 @@ build_script:
   - cd ..
   
   - ditto /Library/Frameworks/R.framework R.framework
-  - cp libc++.1.dylib R.framework/Resources/lib
-  - cp libc++abi.dylib R.framework/Resources/lib
+#   - cp libc++.1.dylib R.framework/Resources/lib
+#   - cp libc++abi.dylib R.framework/Resources/lib
   - mkdir -p R.framework/Resources/base
   - mkdir -p R.framework/Resources/base/R
   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
