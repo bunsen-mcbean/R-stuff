@@ -6,7 +6,7 @@ environment:
     MACOSX_DEPLOYMENT_TARGET: 10.11
     CRAN_MIRROR: https://cran.microsoft.com/snapshot/2020-01-01
     FC: /usr/local/gfortran/bin/gfortran
-    TC_BASE: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr
+    TC_BASE: /usr
     
 install:
   #- curl -o clang.pkg https://cloud.r-project.org/bin/macosx/tools/clang-7.0.0.pkg
@@ -43,9 +43,9 @@ build_script:
   
   - ditto /Library/Frameworks/R.framework R.framework
   - sh fixpathR R.framework/Resources
-  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
   - mkdir -p R.framework/Resources/base
   - mkdir -p R.framework/Resources/base/R
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
   - python patch-framework.py
   - mv R.framework/Resources/base .
