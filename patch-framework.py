@@ -77,7 +77,7 @@ def extract_lib_dependencies(libs):
 
 			if (line.startswith("/Library/Frameworks/R.framework/")
 					or line.startswith("/opt/")
-					or line.startswith("/usr/local/"):
+					or line.startswith("/usr/local/")):
 		
 				file = line.split()[0]
 				dependencies.add(file)
