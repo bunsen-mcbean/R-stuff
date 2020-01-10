@@ -1,6 +1,7 @@
 
 
 import os
+import sys
 from subprocess import check_output
 from subprocess import call
 import shutil
@@ -128,6 +129,7 @@ for dependency in dependencies:
 	else:
 	
 		print(dependency + " not found!")
+		sys.exit(1)
 
 print(dependencies)
 print(changes)
