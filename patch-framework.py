@@ -75,7 +75,11 @@ def extract_lib_dependencies(libs):
 	
 			line = line.strip()
 
-			if line.startswith("/Library/Frameworks/R.framework/") or line.startswith("/opt/") or line.startswith("/usr/local/"):
+			if (line.startswith("/Library/Frameworks/R.framework/")
+					or line.startswith("/opt/")
+					or line.startswith("/usr/local/")
+					or line == '/usr/lib/libc++.1.dylib'
+					or line == '/usr/lib/libc++abi.dylib'
 		
 				file = line.split()[0]
 				dependencies.add(file)
