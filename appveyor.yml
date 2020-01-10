@@ -8,8 +8,8 @@ environment:
     FC: /usr/local/gfortran/bin/gfortran
 
 install:
-  - curl -o clang.pkg https://cloud.r-project.org/bin/macosx/tools/clang-7.0.0.pkg
-  - sudo installer -pkg clang.pkg -target /
+  #- curl -o clang.pkg https://cloud.r-project.org/bin/macosx/tools/clang-7.0.0.pkg
+  #- sudo installer -pkg clang.pkg -target /
   - curl -o gfortran.pkg https://cloud.r-project.org/bin/macosx/tools/gfortran-6.1.pkg
   - sudo installer -pkg gfortran.pkg -target /
   - curl -o XQuartz.pkg https://www.jamovi.org/misc/XQuartz.pkg
@@ -34,33 +34,32 @@ build_script:
   - cat tmp >configure
   - rm tmp
 
-  - ./configure  'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include' 'CXXFLAGS=-Wall -g -O2' 'OBJCFLAGS=-Wall -g -O2' 'FCFLAGS=-Wall -g -O2' 'F77FLAGS=-Wall -g -O2' '--enable-memory-profiling' '--x-libraries=/opt/X11/lib' '--enable-R-framework' 'PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/lib/pkgconfig'
-#  - ./configure 'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include' 'CXXFLAGS=-Wall -g -O2' 'OBJCFLAGS=-Wall -g -O2' 'FCFLAGS=-Wall -g -O2' 'F77FLAGS=-Wall -g -O2' '--x-libraries=/opt/X11/lib' '--enable-R-framework' 'PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/lib/pkgconfig' --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes || true
+  - ./configure 'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include' 'CXXFLAGS=-Wall -g -O2' 'OBJCFLAGS=-Wall -g -O2' 'FCFLAGS=-Wall -g -O2' 'F77FLAGS=-Wall -g -O2' '--x-libraries=/opt/X11/lib' '--enable-R-framework' 'PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/lib/pkgconfig' --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
   - sudo make install
   - cd ..
   
   - ditto /Library/Frameworks/R.framework R.framework
-#   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/library', type='source')"
-#   - mkdir -p R.framework/Resources/base
-#   - mkdir -p R.framework/Resources/base/R
-#   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
-#   - python patch-framework.py
-#   - mv R.framework/Resources/base .
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/library', type='source')"
+  - mkdir -p R.framework/Resources/base
+  - mkdir -p R.framework/Resources/base/R
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
+  - python patch-framework.py
+  - mv R.framework/Resources/base .
   
-#   - echo "#!/bin/sh"                              >tmp
-#   - echo "# Shell wrapper for R executable."      >>tmp
-#   - echo HERE=\$\(cd \"\$\(dirname \"\$0\"\)\"\; pwd\) >>tmp
-#   - echo export R_HOME=\$HERE/..                  >>tmp
-#   - echo export R_SHARE_DIR=\$R_HOME/share        >>tmp
-#   - echo export R_INCLUDE_DIR=\$R_HOME/include    >>tmp
-#   - echo export R_DOC_DIR=\$R_HOME/doc            >>tmp
-#   - tail -n +41 R.framework/Versions/Current/Resources/bin/R >>tmp
-#   - cat tmp >R.framework/Versions/Current/Resources/bin/R
-#   - rm tmp
+  - echo "#!/bin/sh"                              >tmp
+  - echo "# Shell wrapper for R executable."      >>tmp
+  - echo HERE=\$\(cd \"\$\(dirname \"\$0\"\)\"\; pwd\) >>tmp
+  - echo export R_HOME=\$HERE/..                  >>tmp
+  - echo export R_SHARE_DIR=\$R_HOME/share        >>tmp
+  - echo export R_INCLUDE_DIR=\$R_HOME/include    >>tmp
+  - echo export R_DOC_DIR=\$R_HOME/doc            >>tmp
+  - tail -n +41 R.framework/Versions/Current/Resources/bin/R >>tmp
+  - cat tmp >R.framework/Versions/Current/Resources/bin/R
+  - rm tmp
   
   - tar -cjf R.framework.tar.bz2  R.framework
-#  - tar -cjf base.tar.bz2         base
+  - tar -cjf base.tar.bz2         base
 
 artifacts:
   - name: R framework
