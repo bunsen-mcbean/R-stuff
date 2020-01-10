@@ -30,7 +30,7 @@ install:
   - curl -o R.pkg https://cloud.r-project.org/bin/macosx/R-3.6.1.pkg
   - sudo installer -pkg R.pkg -target /
   - cp /Library/Frameworks/R.framework/Resources/lib/libc++.1.dylib .
-  - cp /Library/Frameworks/R.framework/Resources/lib/libc++abi.1.dylib .
+  - cp /Library/Frameworks/R.framework/Resources/lib/libc++abi.dylib .
   - sudo rm -rf /Library/Frameworks/R.framework
 #  - curl -o fixpathR https://svn.r-project.org/R-dev-web/trunk/QA/Simon/R-build/fixpathR
 
@@ -49,7 +49,7 @@ build_script:
   
   - ditto /Library/Frameworks/R.framework R.framework
   - cp libc++.1.dylib R.framework/Resources/lib
-  - cp libc++abi.1.dylib R.framework/Resources/lib
+  - cp libc++abi.dylib R.framework/Resources/lib
   - mkdir -p R.framework/Resources/base
   - mkdir -p R.framework/Resources/base/R
   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
