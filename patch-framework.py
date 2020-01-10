@@ -129,7 +129,7 @@ for dependency in dependencies:
 	else:
 	
 		print(dependency + " not found!")
-		sys.exit(1)
+		# sys.exit(1)
 
 print(dependencies)
 print(changes)
