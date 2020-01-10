@@ -25,7 +25,7 @@ install:
   - curl https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz | tar xz
   - curl https://mac.r-project.org/libs/readline-5.2-12-darwin8-bin4.tar.gz | tar xz
   - sudo ditto usr/local /usr/local
-  - curl https://svn.r-project.org/R-dev-web/trunk/QA/Simon/R-build/fixpathR
+  - curl -o fixpathR https://svn.r-project.org/R-dev-web/trunk/QA/Simon/R-build/fixpathR
 
 build_script:
 
