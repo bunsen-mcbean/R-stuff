@@ -6,8 +6,8 @@ environment:
     MACOSX_DEPLOYMENT_TARGET: 10.11
     CRAN_MIRROR: https://cran.microsoft.com/snapshot/2020-01-01
     FC: /usr/local/gfortran/bin/gfortran
-    TC_BASE: /usr/local
-
+    TC_BASE: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr
+    
 install:
   #- curl -o clang.pkg https://cloud.r-project.org/bin/macosx/tools/clang-7.0.0.pkg
   #- sudo installer -pkg clang.pkg -target /
