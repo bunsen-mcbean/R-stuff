@@ -25,14 +25,15 @@ install:
   - curl https://mac.r-project.org/libs/tiff-4.0.7-darwin.15-x86_64.tar.gz | tar xz
   - curl https://mac.r-project.org/libs/readline-5.2-12-darwin8-bin4.tar.gz | tar xz
   - sudo ditto usr/local /usr/local
+  - curl https://svn.r-project.org/R-dev-web/trunk/QA/Simon/R-build/fixpathR
 
 build_script:
 
   - cd R-$R_VERSION
   
-  - cat configure | grep -v "#include <cairo-xlib.h>" >tmp
-  - cat tmp >configure
-  - rm tmp
+#  - cat configure | grep -v "#include <cairo-xlib.h>" >tmp
+#  - cat tmp >configure
+#  - rm tmp
 
   - ./configure 'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include' 'CXXFLAGS=-Wall -g -O2' 'OBJCFLAGS=-Wall -g -O2' 'FCFLAGS=-Wall -g -O2' 'F77FLAGS=-Wall -g -O2' '--x-libraries=/opt/X11/lib' '--enable-R-framework' 'PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/lib/pkgconfig' --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
@@ -40,7 +41,8 @@ build_script:
   - cd ..
   
   - ditto /Library/Frameworks/R.framework R.framework
-  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/library', type='source')"
+  - sh fixpathR R.framework
+  - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('Rcpp', 'RInside'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
   - mkdir -p R.framework/Resources/base
   - mkdir -p R.framework/Resources/base/R
   - /Library/Frameworks/R.framework/Resources/bin/R -e "install.packages(c('rjson', 'base64enc', 'RProtoBuf', 'knitr', 'testthat', 'rlang', 'ggplot2', 'remotes'), repos='$CRAN_MIRROR', lib='R.framework/Resources/base/R', type='mac.binary.el-capitan')"
