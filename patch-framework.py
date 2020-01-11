@@ -117,8 +117,11 @@ for dependency in dependencies:
 
 	if os.path.isfile(dependency):
 	
-		if dependency != "/opt/X11/lib/libfreetype.6.dylib" and dependency != dep_target:
-			shutil.copyfile(dependency, dep_target)
+		if dependency != "/opt/X11/lib/libfreetype.6.dylib":
+			try:
+				shutil.copyfile(dependency, dep_target)
+			except Exception as e:
+				print(e)
 			
 		new_libs.append(dep_target)
 		
