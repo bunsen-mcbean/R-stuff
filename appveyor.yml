@@ -47,8 +47,10 @@ build_script:
   - sudo make install
   - cd ..
   
-  - sudo ln -s /usr/lib/libc++.1.dylib /Library/Frameworks/R.framework/Resources/lib/libc++.1.dylib
+#  - sudo ln -s /usr/lib/libc++.1.dylib /Library/Frameworks/R.framework/Resources/lib/libc++.1.dylib
   - ditto /Library/Frameworks/R.framework R.framework
+  - sudo cp /usr/lib/libc++.1.dylib  /Library/Frameworks/R.framework/Resources/lib
+  - sudo cp /usr/lib/libc++abi.dylib /Library/Frameworks/R.framework/Resources/lib
 #   - cp libc++.1.dylib R.framework/Resources/lib
 #   - cp libc++abi.dylib R.framework/Resources/lib
   - mkdir -p R.framework/Resources/base
