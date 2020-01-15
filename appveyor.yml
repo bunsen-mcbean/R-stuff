@@ -51,7 +51,7 @@ build_script:
   - ditto /Library/Frameworks/R.framework R.framework
   - sudo cp /usr/lib/libc++.1.dylib      /Library/Frameworks/R.framework/Resources/lib
   - sudo cp /usr/lib/libc++abi.dylib     /Library/Frameworks/R.framework/Resources/lib
-  - sudo cp /usr/local/lib/libgomp.dylib /Library/Frameworks/R.framework/Resources/lib
+  - sudo cp /usr/local/lib/libiomp5.dylib /Library/Frameworks/R.framework/Resources/lib/libgomp.dylib
 #   - cp libc++.1.dylib R.framework/Resources/lib
 #   - cp libc++abi.dylib R.framework/Resources/lib
   - mkdir -p R.framework/Resources/base
