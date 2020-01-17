@@ -43,7 +43,7 @@ build_script:
   - cat tmp >configure
   - rm tmp
 
-  - ./configure 'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -mmacosx-version-min=10.11' 'CXXFLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'OBJCFLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'FCFLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'F77FLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
+  - ./configure 'CC=clang' 'CXX=clang++' 'OBJC=clang' 'CFLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include' 'CXXFLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'OBJCFLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'FCFLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'F77FLAGS=-Wall -g -O2 -mmacosx-version-min=10.11' 'LDFLAGS=-mmacosx-version-min=10.11' --enable-R-framework --enable-R-shlib --with-aqua=no --with-tcltk=no --with-x=no --with-cairo=yes --with-libpng=yes --with-jpeglib=yes --with-libtiff=yes
   - make
   - sudo make install
   - cd ..
